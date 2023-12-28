@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block start %}
+<div>
+    <div>hi my name is himani</div>
+    <div>
+      {% for particularquiz in queryset%}
+        <div class="form-check">
+            <h3 class="text start">
+            <span>Q</span>
+            <span>{{forloop.counter}}</span>
+            <span>{{particularQuestion.question}}</span>
+            </h3>
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <label class="form-check-label" for="exampleRadios1">
+              {{particularQuestion.option_1}}
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">
+              {{particularQuestion.option_2}}
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios3">
+              {{particularQuestion.option_3}}
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios4">
+              {{particularQuestion.option_4}}
+            </label>
+          </div>
+          {%endfor%}
+          
+    </div>
+</div>
+
+{% endblock %}

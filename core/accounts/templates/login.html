@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block start %}
+<div>
+  <section class="vh-100">
+    <div class="container py-5 h-100">
+      <div class="row d-flex align-items-center justify-content-center h-100">
+        <div class="col-md-8 col-lg-7 col-xl-6">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+            class="img-fluid" alt="Phone image">
+        </div>
+        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1" >
+          <form method='POST'  action='{% url "login_page" %}'>
+            {% csrf_token %}
+            {% comment %} alert message {% endcomment %}
+            {% if messages %}
+            <div class="alert alert-primary" role="alert">
+            {% for message in messages %}
+            {{ message }}
+            {%endfor%}
+            </div>
+            {% endif %}
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form1Example13">Username</label>
+              <input type="text" id="form1Example13" class="form-control form-control-lg" name="full_name" placeholder="abc" />
+
+            </div>
+  
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form1Example23">Password</label>
+              <input type="password" id="form1Example23" class="form-control form-control-lg" name="password" placeholder="*****"/> 
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block" >login in</button>
+  
+            <div class="divider d-flex align-items-center my-4">
+              <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+            </div>
+  
+            <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="register"
+              style="color: #393f81;">Register here</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

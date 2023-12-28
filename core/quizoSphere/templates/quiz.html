@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block start %}
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">QUIZOSPHERE</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Problem</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/profile/">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/accounts/login">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>
+  
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">S.No</th>
+        <th scope="col">Quiz Name</th>
+        <th scope="col">Quiz Subject</th>
+        <th scope="col">Number Of Quiz</th>
+        <th scope="col">Quiz Type</th>
+        <th scope="col">Post Date</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        {% comment %} <th scope="col">Quiz Progress</th> {% endcomment %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for quiz in queryset%}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>
+          <a href="{% url 'question' quiz.id %}">
+            {{ quiz.quiz_name }}
+          </a>        
+        </td>
+        <td>{{quiz.quiz_subject}}</td>
+        <td>{{quiz.no_of_quiz}}</td>
+        <td>{{quiz.quiz_type}}</td>
+        <td>{{quiz.quiz_post_date}}</td>
+        <td>{{quiz.quiz_start_date}}</td>
+        <td>{{quiz.quiz_end_date}}</td>
+        {% comment %} <td>{{quiz.quiz_Progress}}</td> {% endcomment %}
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+{% endblock %}

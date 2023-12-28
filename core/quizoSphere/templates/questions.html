@@ -1,0 +1,68 @@
+
+{% extends "base.html" %}
+{% block start %}
+{% load post_tags %}
+
+<div class="container py-5">
+  
+  <!-- For demo purpose -->
+  <div class="row mb-4">
+    <div class="col-lg-8 mx-auto text-center">
+      <h1 class="display-4"> </h1>
+      <p class="lead mb-0"></p>
+      <h2 > {{quiz.quiz_name}}</h2>
+    </div>
+  </div>
+  <!-- End -->
+
+        <div class="row">
+          <div class="col-lg-7 mx-auto">
+            <div class="bg-white rounded-lg shadow-sm p-5">
+              <!-- Credit card form tabs -->
+              <ul role="tablist" class="nav bg-light nav-pills rounded-pill nav-fill mb-3">
+                {% for ques in questions %}
+                  <li class="nav-item">
+                    <a data-toggle="pill" href="#nav-tab-{{ forloop.counter }}" class="nav-link {% if forloop.first %}active{% endif %} rounded-pill">
+                      <i class="fa fa-credit-card"></i>
+                      <span>Question {{ forloop.counter }}</span>
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+        
+        <!-- End -->
+        <div class="tab-content">
+          {% for ques in questions %}
+            {% with options=options_dict|get_by_key:ques.id  %}
+              <div id="nav-tab-{{ forloop.counter }}" class="tab-pane fade {% if forloop.first %}show active{% endif %}">
+                <form role="form">
+                  <div class="form-group">
+                    <p>{{ ques.value }}</p>
+                  </div>
+                  <div class="form-group">
+                    {% for option in options %}
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="selected_option" value="{{ option.id }}" id="option{{ option.id }}">
+                        <label class="form-check-label" for="option{{ option.id }}">
+                          {{ option.text_option }}
+                        </label>
+                      </div>
+                    {% endfor %}
+                  </div>
+                  <button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm">Submit</button>
+                </form>
+              </div>
+            {% endwith %}
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+
+</div>
+
+
+
+ {% endblock %}
